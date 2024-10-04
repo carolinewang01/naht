@@ -1,0 +1,2 @@
+base_results_path: "~/naht_results" # default location to save results
+email: null # user email for condor notifications

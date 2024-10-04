@@ -1,0 +1,88 @@
+# --- Defaults ---
+
+# --- pymarl options ---
+runner: "episode" # parallel # Runs 1 env for an episode
+mac: "open_eval_mac" # Basic controller
+env: "gymma" # Environment name
+batch_size_run: 1 # 8 # Number of environments to run in parallel
+test_nepisode: 128 # Number of episodes to test for
+
+env_args: {} # Arguments for the environment
+test_interval: 2000 # Test after {} timesteps have passed
+test_greedy: True # Use greedy evaluation (if False, will set epsilon floor to 0
+log_interval: 2000 # Log summary of stats after every {} timesteps
+runner_log_interval: 2000 # Log runner stats (not test stats) every {} timesteps
+learner_log_interval: 2000 # Log training stats every {} timesteps
+t_max: 10000 # Stop running after this many timesteps
+use_cuda: True # Use gpu by default unless it isn't available
+buffer_cpu_only: True # If true we won't keep all of the replay buffer in vram
+log_discounted_return: False # whether to log discounted return
+
+# --- Unused ogging/eval options ---
+use_tensorboard: False # Log results to tensorboard
+save_model: False # Save the models to disk
+save_model_interval: 50000 # Save models after this many timesteps
+checkpoint_path: "" # Load a checkpoint from this path
+render: False # Render the environment when evaluating (only when evaluate == True)
+
+# --- Default learning hyperparameters: doesn't matter for eval only settings ---
+gamma: 0.99
+batch_size: 32 # Number of episodes to train on
+buffer_size: 32 # Size of the replay buffer
+lr: 0.0005 # Learning rate for agents
+optim_alpha: 0.99 # RMSProp alpha
+optim_eps: 0.00001 # RMSProp epsilon
+grad_norm_clip: 10 # Reduce magnitude of gradients above this L2 norm
+add_value_last_step: True
+
+# --- Open Eval Parameters ---
+test_verbose: True # Print out evaluation results
+save_replay: False # Saving the replay of the model loaded from checkpoint_path
+eval_mode: open # Evaluate model for test_nepisode episodes and quit (no training)
+local_results_path: matrix-games/bit-3p-jointactstate-v0/open_eval # Path to save local results
+base_checkpoint_path: ""
+n_unseen: 2 # number of unseen agents to sample and add to trained agent team
+
+# --- Trained agent-specific parameters --- 
+hidden_dim: 64
+agent: "rnn_poam"
+
+# --- agents to load ---
+trained_agents: 
+  agent_0: 
+    agent_loader: poam_eval_agent_loader # rnn_eval_agent_loader
+    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/ippo_rs/models/ippo_baseline_seed=112358_07-18-16-20-01
+    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/liam-u_rs_edim=2_eepochs=1_emb=1_ED-MASK-TARG/models/poam_baseline_seed=112358_07-24-18-24-09
+    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/liam_rs_embed-dim=2-bsrun=2/models/poam_baseline_seed=112358_07-18-16-39-26
+    
+    # for verifying the theoretical example
+    # agent_path: matrix-games/bit-3p-jointactstate-v0/theory_ex/poam-r/models/poam_baseline_seed=93718_07-29-15-29-24
+    # poam_baseline_seed=112358_07-29-15-29-24 
+    # poam_baseline_seed=1285842_07-29-15-29-24
+    # poam_baseline_seed=78590_07-29-15-29-24
+    # poam_baseline_seed=38410_07-29-15-29-24
+    # poam_baseline_seed=93718_07-29-15-29-24
+
+    agent_path: matrix-games/bit-3p-jointactstate-v0/theory_ex/poam-aht-r/models/poam_baseline_seed=38410_07-29-15-27-49
+    # poam_baseline_seed=112358_07-29-15-27-49     
+    # poam_baseline_seed=1285842_07-29-15-27-49
+    # poam_baseline_seed=78590_07-29-15-27-49
+    # poam_baseline_seed=38410_07-29-15-27-49
+    # poam_baseline_seed=93718_07-29-15-27-49
+  
+    load_step: best # Load model trained on this many timesteps (0 if choose max possible)
+    n_agents_to_populate: 3 # must be less than n_agents
+unseen_agents:
+  agent_random:
+    agent_loader: bot_agent_loader
+    bot_name: bit-matrix-game:random
+    n_agents_to_populate: 3
+  # agent_static: # can name teams anything
+  #   agent_loader: bot_agent_loader
+  #   bot_name: bit-matrix-game:static
+  #   n_agents_to_populate: 3
+
+# --- Experiment running params ---
+repeat_id: 1
+label: test_open_eval
+hypergroup: null

@@ -1,0 +1,51 @@
+# --- MAPPO specific parameters ---
+
+name: "mappo"
+on_policy: True
+action_selector: "soft_policies"
+mask_before_softmax: True
+
+runner: "parallel"
+
+buffer_size: 256
+batch_size_run: 8
+batch_size: 256
+
+obs_agent_id: True
+# obs_last_action: False
+obs_state: True # required for mappo critic
+# obs_individual_obs: False # used for cv_critic only
+
+agent_output_type: "pi_logits"
+learner: "ppo_learner"
+mac: "basic_mac"
+agent: rnn_norm
+critic_type: "ippo_critic"
+
+entropy_coef: 0.05
+standardise_rewards: True
+use_gae: True # if False, use n-step returns
+gae_lambda: 0.95
+q_nstep: 5 # 1 corresponds to normal r + gammaV
+
+epochs: 10
+n_minibatch: 1
+eps_clip: 0.05
+lr: 0.0005
+optim_alpha: 0.99
+optim_eps: .00001
+
+use_popart: False # use PopArt to normalize rewards
+clip_value_loss: True # limit how much value is allowed to change during PPO epochs
+use_huber_loss: True
+huber_delta: 10.0
+use_adv_std: True # standardize advantages
+
+use_obs_norm: True # apply layernorm to normalize inputs
+use_orthogonal_init: True # if False, use xavier uniform initialization, else use orthogonal
+
+trainable_agents_mask_actor: True # applies to open train only
+trainable_agents_mask_critic: False # applies to open train only
+mask_type: "team" # choices: [team, agent] 
+# team: multiply default terminated and filled masks
+# ind: compute individual mask from available actions
