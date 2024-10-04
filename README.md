@@ -1,5 +1,17 @@
 # N Agent Ad Hoc Teamwork
 
+
+This is the code release for the paper, "N-Agent Ad Hoc Teamwork", published at NeurIPS 2024. If you find the code or paper useful for your work, please cite: 
+
+```bibtex
+@inproceedings{wang2024naht,
+    title={N-Agent Ad Hoc Teamwork},
+    author={Wang, Caroline and Rahman, Arrasy and Durugkar, Ishan and Liebman, Elad and Stone, Peter},
+    booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+    year={2024}
+}
+```
+
 This codebase was built on top of the [EPyMARL](https://github.com/uoe-agents/epymarl) codebase. 
 Please see that codebase for instructions to install this codebase, SMAC, and the MPE environment. 
 
