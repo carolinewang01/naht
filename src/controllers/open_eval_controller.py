@@ -9,7 +9,7 @@ class OpenEvalMAC:
     def __init__(self, scheme, groups, args):
         self.n_agents = args.n_agents
         self.args = args
-        self.n_unseen = args.n_unseen
+        self.n_uncontrolled = args.n_uncontrolled
         self._build_agent_pool(scheme)
         self.sample_agent_team()
 
@@ -19,8 +19,8 @@ class OpenEvalMAC:
         joint_act = []
         joint_hidden = []
         for agent_idx, subteam_idx, team_name in self._active_team:
-            if team_name == "unseen_agent_subteam":
-                agent = self.unseen_agent_pool[subteam_idx]
+            if team_name == "uncontrolled_agent_subteam":
+                agent = self.uncontrolled_agent_pool[subteam_idx]
             else:
                 assert team_name == "trained_agent_subteam"
                 agent = self.trained_agent_pool[subteam_idx]
@@ -40,29 +40,29 @@ class OpenEvalMAC:
 
     def parameters(self):
         parameters = []
-        for agent in [*self.trained_agent_pool, *self.unseen_agent_pool]:
+        for agent in [*self.trained_agent_pool, *self.uncontrolled_agent_pool]:
             parameters += list(agent.parameters())
         return parameters
 
     def cuda(self):
-        for agent in [*self.trained_agent_pool, *self.unseen_agent_pool]:
+        for agent in [*self.trained_agent_pool, *self.uncontrolled_agent_pool]:
             agent.cuda()
         
     def sample_agent_team(self): 
         '''
         This function controls the openness of the evaluation.
-        Randomly samples n_unseen agents from the unseen agent team.
+        Randomly samples n_uncontrolled agents from the uncontrolled agent team.
         ''' 
-        unseen_agent_idxs = list(np.random.choice(len(self.unseen_agent_pool), 
-                                                     self.n_unseen, 
+        uncontrolled_agent_idxs = list(np.random.choice(len(self.uncontrolled_agent_pool), 
+                                                     self.n_uncontrolled, 
                                                      replace=False))
         trained_agent_idxs = list(np.random.choice(len(self.trained_agent_pool), 
-                                                      self.n_agents - self.n_unseen, 
+                                                      self.n_agents - self.n_uncontrolled, 
                                                       replace=False))
-        # order agents from unseen and trained teams randomly
+        # order agents from uncontrolled and trained teams randomly
         agent_order = list(range(self.n_agents))
         random.shuffle(agent_order)
-        self._active_team = [(agent_order.pop(0), i, "unseen_agent_subteam") for i in unseen_agent_idxs] + \
+        self._active_team = [(agent_order.pop(0), i, "uncontrolled_agent_subteam") for i in uncontrolled_agent_idxs] + \
                             [(agent_order.pop(0), i, "trained_agent_subteam") for i in trained_agent_idxs]
         
         # original agent order
@@ -85,7 +85,7 @@ class OpenEvalMAC:
                 agent_path: ""
                 n_agents_to_populate: 2
                 load_step: 0
-        unseen_agents:
+        uncontrolled_agents:
             agent_0:
                 agent_loader: "rnn_agent_loader"
                 agent_path: ""
@@ -94,7 +94,7 @@ class OpenEvalMAC:
         '''
         base_path = self.args.base_results_path
         trained_agents_dict = self.args.trained_agents
-        unseen_agents_dict = self.args.unseen_agents
+        uncontrolled_agents_dict = self.args.uncontrolled_agents
 
         self.trained_agent_pool = []
         for _, agent_cfg in trained_agents_dict.items():
@@ -109,8 +109,8 @@ class OpenEvalMAC:
                                                                         )
                 self.trained_agent_pool.append(agent)
 
-        self.unseen_agent_pool = []
-        for _, agent_cfg in unseen_agents_dict.items():
+        self.uncontrolled_agent_pool = []
+        for _, agent_cfg in uncontrolled_agents_dict.items():
             for i in range(agent_cfg["n_agents_to_populate"]):
                 if agent_cfg["agent_loader"] == "bot_agent_loader":
                         agent = agent_loader_REGISTRY[agent_cfg['agent_loader']](
@@ -125,6 +125,6 @@ class OpenEvalMAC:
                                                                             load_step=agent_cfg["load_step"],
                                                                             load_agent_idx=i,
                                                                             )
-                self.unseen_agent_pool.append(agent)
+                self.uncontrolled_agent_pool.append(agent)
 
-        assert len(self.trained_agent_pool) + len(self.unseen_agent_pool) >= self.n_agents
+        assert len(self.trained_agent_pool) + len(self.uncontrolled_agent_pool) >= self.n_agents

@@ -11,7 +11,7 @@ class OpenTrainMAC:
         '''This class was based off the OpenEvalMAC'''
         self.n_agents = args.n_agents
         self.args = args
-        self.n_unseen = args.n_unseen
+        self.n_uncontrolled = args.n_uncontrolled
         self._build_agent_pool(scheme)
         self.sample_agent_team()
 
@@ -32,9 +32,9 @@ class OpenTrainMAC:
         joint_act = []
         joint_hidden = []
         for agent_idx, subteam_idx, team_name in self._active_team:
-            if team_name == "unseen_agent_subteam":
-                agent = self.unseen_agent_pool[subteam_idx]
-                # unseen agents should be evaluated in test mode
+            if team_name == "uncontrolled_agent_subteam":
+                agent = self.uncontrolled_agent_pool[subteam_idx]
+                # uncontrolled agents should be evaluated in test mode
                 _, act, hidden_state = agent.predict(ep_batch, agent_idx=agent_idx, 
                                                      t_ep=t_ep, t_env=t_env, bs=bs
                                                      )
@@ -79,7 +79,7 @@ class OpenTrainMAC:
         self.trained_agent.load_state_dict(other_mac.trained_agent.state_dict())
 
     def cuda(self):
-        for agent in [self.trained_agent, *self.unseen_agent_pool]:
+        for agent in [self.trained_agent, *self.uncontrolled_agent_pool]:
             agent.cuda()
     
     def save_models(self, path):
@@ -92,26 +92,26 @@ class OpenTrainMAC:
     def sample_agent_team(self): 
         '''
         This function controls the openness of the evaluation.
-        Randomly samples n_unseen agents from the unseen agent team.
+        Randomly samples n_uncontrolled agents from the uncontrolled agent team.
         ''' 
-        # sample number of unseen agents
-        if self.n_unseen is None: # sample n_unseen uniformly from 1 to n_agents-1
-            n_unseen = np.random.randint(1, self.n_agents)
+        # sample number of uncontrolled agents
+        if self.n_uncontrolled is None: # sample n_uncontrolled uniformly from 1 to n_agents-1
+            n_uncontrolled = np.random.randint(1, self.n_agents)
         else:
-            n_unseen = self.n_unseen
-        # sample unseen agent team
-        active_unseen_team = np.random.choice(list(self.unseen_agent_teams.keys()))            
-        self.unseen_agent_pool = self.unseen_agent_teams[active_unseen_team]
-        unseen_agent_idxs = list(np.random.choice(len(self.unseen_agent_pool), 
-                                                     n_unseen, 
+            n_uncontrolled = self.n_uncontrolled
+        # sample uncontrolled agent team
+        active_uncontrolled_team = np.random.choice(list(self.uncontrolled_agent_teams.keys()))            
+        self.uncontrolled_agent_pool = self.uncontrolled_agent_teams[active_uncontrolled_team]
+        uncontrolled_agent_idxs = list(np.random.choice(len(self.uncontrolled_agent_pool), 
+                                                     n_uncontrolled, 
                                                      replace=False))
         trained_agent_idxs = list(np.random.choice(range(self.n_agents), 
-                                                   self.n_agents - n_unseen, 
+                                                   self.n_agents - n_uncontrolled, 
                                                    replace=False))
-        # order agents from unseen and trained teams randomly
+        # order agents from uncontrolled and trained teams randomly
         agent_order = list(range(self.n_agents))
         random.shuffle(agent_order)
-        self._active_team = [(agent_order.pop(0), i, "unseen_agent_subteam") for i in unseen_agent_idxs] + \
+        self._active_team = [(agent_order.pop(0), i, "uncontrolled_agent_subteam") for i in uncontrolled_agent_idxs] + \
                             [(agent_order.pop(0), i, "trained_agent_subteam") for i in trained_agent_idxs]
         
         # original agent order
@@ -133,7 +133,7 @@ class OpenTrainMAC:
             agent_0:
                 agent_loader: "rnn_train_agent_loader"
                 agent_path: "" # leave empty for training from scratch
-        unseen_agents:
+        uncontrolled_agents:
             agent_0:
                 agent_loader: "rnn_eval_agent_loader"
                 agent_path: ""
@@ -147,13 +147,13 @@ class OpenTrainMAC:
                                                                  scheme=scheme,
                                                                  model_path=agent_path)
         
-        # initialize+load unseen agents
+        # initialize+load uncontrolled agents
         base_path = self.args.base_results_path
-        unseen_agents_dict = self.args.unseen_agents
-        self.unseen_agent_teams = {}
+        uncontrolled_agents_dict = self.args.uncontrolled_agents
+        self.uncontrolled_agent_teams = {}
 
-        for agent_nm, agent_cfg in unseen_agents_dict.items():
-            self.unseen_agent_teams[agent_nm] = []
+        for agent_nm, agent_cfg in uncontrolled_agents_dict.items():
+            self.uncontrolled_agent_teams[agent_nm] = []
             use_param_sharing = False
 
             assert agent_cfg["n_agents_to_populate"] >= self.n_agents - 1
@@ -176,4 +176,4 @@ class OpenTrainMAC:
                                                                                 test_mode=agent_cfg["test_mode"]
                                                                                 )
                         use_param_sharing = agent.use_param_sharing
-                self.unseen_agent_teams[agent_nm].append(agent)
+                self.uncontrolled_agent_teams[agent_nm].append(agent)

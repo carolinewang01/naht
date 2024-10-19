@@ -41,7 +41,7 @@ save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: open # Evaluate model for test_nepisode episodes and quit (no training)
 local_results_path: matrix-games/bit-3p-jointactstate-v0/open_eval # Path to save local results
 base_checkpoint_path: ""
-n_unseen: 2 # number of unseen agents to sample and add to trained agent team
+n_uncontrolled: 2 # number of uncontrolled agents to sample and add to trained agent team
 
 # --- Trained agent-specific parameters --- 
 hidden_dim: 64
@@ -51,36 +51,18 @@ agent: "rnn_poam"
 trained_agents: 
   agent_0: 
     agent_loader: poam_eval_agent_loader # rnn_eval_agent_loader
-    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/ippo_rs/models/ippo_baseline_seed=112358_07-18-16-20-01
-    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/liam-u_rs_edim=2_eepochs=1_emb=1_ED-MASK-TARG/models/poam_baseline_seed=112358_07-24-18-24-09
-    # agent_path: matrix-games/bit-3p-jointactstate-v0/open_train/liam_rs_embed-dim=2-bsrun=2/models/poam_baseline_seed=112358_07-18-16-39-26
-    
-    # for verifying the theoretical example
-    # agent_path: matrix-games/bit-3p-jointactstate-v0/theory_ex/poam-r/models/poam_baseline_seed=93718_07-29-15-29-24
-    # poam_baseline_seed=112358_07-29-15-29-24 
-    # poam_baseline_seed=1285842_07-29-15-29-24
-    # poam_baseline_seed=78590_07-29-15-29-24
-    # poam_baseline_seed=38410_07-29-15-29-24
-    # poam_baseline_seed=93718_07-29-15-29-24
-
-    agent_path: matrix-games/bit-3p-jointactstate-v0/theory_ex/poam-aht-r/models/poam_baseline_seed=38410_07-29-15-27-49
-    # poam_baseline_seed=112358_07-29-15-27-49     
-    # poam_baseline_seed=1285842_07-29-15-27-49
-    # poam_baseline_seed=78590_07-29-15-27-49
-    # poam_baseline_seed=38410_07-29-15-27-49
-    # poam_baseline_seed=93718_07-29-15-27-49
-  
+    agent_path: "" # path to agent model to evaluate
     load_step: best # Load model trained on this many timesteps (0 if choose max possible)
     n_agents_to_populate: 3 # must be less than n_agents
-unseen_agents:
+uncontrolled_agents:
   agent_random:
     agent_loader: bot_agent_loader
     bot_name: bit-matrix-game:random
     n_agents_to_populate: 3
-  # agent_static: # can name teams anything
-  #   agent_loader: bot_agent_loader
-  #   bot_name: bit-matrix-game:static
-  #   n_agents_to_populate: 3
+  agent_static: # can name teams anything
+    agent_loader: bot_agent_loader
+    bot_name: bit-matrix-game:static
+    n_agents_to_populate: 3
 
 # --- Experiment running params ---
 repeat_id: 1

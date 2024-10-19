@@ -46,70 +46,70 @@ obs_last_action: True # Include the agent's last action (one_hot) in the observa
 test_verbose: False # Print out evaluation results
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: null # Evaluate model for test_nepisode episodes and quit (no training)
-local_results_path: 5v6/open_train/liam-pqvmq_open # Relative path to save local results
+local_results_path: 3sv5z/open_train/poam-qmq_open # Relative path to save local results
 
 # --- agents to load ---
-n_unseen: null # number of unseen agents to sample and add to trained agent team. null means to sample uniformly
+n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: rnn_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
+    agent_loader: poam_train_agent_loader # rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-unseen_agents:
-  agent_qmix1:
+uncontrolled_agents: 
+  agent_qmix1: # 112358, 1285842, 93718
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/qmix/models/qmix_baseline_seed=1285842_11-14-12-00-04
+    agent_path: 3sv5z/qmix/models/qmix_baseline_seed=112358_02-29-22-49-07
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
   agent_qmix2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/qmix/models/qmix_baseline_seed=38410_07-01-16-02-37
+    agent_path: 3sv5z/qmix/models/qmix_baseline_seed=1285842_02-29-22-49-07
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
   agent_qmix3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/qmix/models/qmix_baseline_seed=93718_07-01-16-02-37
+    agent_path: 3sv5z/qmix/models/qmix_baseline_seed=93718_07-01-15-47-16
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
 
-  agent_mappo1:
+  agent_mappo: # 112358, 78590, 38410
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/mappo/models/mappo_baseline_seed=1285842_01-05-12-53-36
+    agent_path: 3sv5z/mappo/models/mappo_baseline_seed=112358_02-29-22-52-21
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
-  agent_mappo2:
+  agent_mappo:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/mappo/models/mappo_baseline_seed=38410_07-01-15-56-45
+    agent_path: 3sv5z/mappo/models/mappo_baseline_seed=78590_02-29-22-52-21
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
-  agent_mappo3:
+  agent_mappo:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/mappo/models/mappo_baseline_seed=93718_07-01-15-56-45
+    agent_path: 3sv5z/mappo/models/mappo_baseline_seed=38410_07-01-15-41-06
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
 
-  agent_iql1:
+  agent_iql: # 112358, 1285842, 93718
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/iql/models/iql_baseline_seed=1285842_11-14-11-57-25
+    agent_path: 3sv5z/iql/models/iql_baseline_seed=112358_02-29-22-50-45
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
-agent_iql2:
+  agent_iql:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/iql/models/iql_baseline_seed=38410_07-01-15-58-52
+    agent_path: 3sv5z/iql/models/iql_baseline_seed=1285842_02-29-22-50-45
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
-agent_iql3:
+  agent_iql:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 5v6/iql/models/iql_baseline_seed=93718_07-01-15-58-52
+    agent_path: 3sv5z/iql/models/iql_baseline_seed=93718_07-01-15-43-11
     load_step: best
-    n_agents_to_populate: 5
+    n_agents_to_populate: 2
     test_mode: True
 
 # --- Experiment running params ---

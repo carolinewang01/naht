@@ -363,16 +363,16 @@ def vis_nk_curve(log_path, algo:str, target_algs,
     for label, res in results.items():
         if f"{algo}-vs-" not in label: 
             continue
-        # compute performance with 0 unseen agents
+        # compute performance with 0 uncontrolled agents
         res["xs"].insert(0, 0)
         res["ys"].insert(0, np.mean(results[f"{algo}-vs-{algo}"]["ys"]))
         res["stds"].insert(0, np.std(results[f"{algo}-vs-{algo}"]["ys"]))
 
-        # compute performance with all unseen agents
-        unseen_algo = label.split("-vs-")[1]
+        # compute performance with all uncontrolled agents
+        uncontrolled_algo = label.split("-vs-")[1]
         res["xs"].append(n)
-        res["ys"].append(np.mean(results[f"{unseen_algo}-vs-{unseen_algo}"]["ys"]))
-        res["stds"].append(np.std(results[f"{unseen_algo}-vs-{unseen_algo}"]["ys"]))
+        res["ys"].append(np.mean(results[f"{uncontrolled_algo}-vs-{uncontrolled_algo}"]["ys"]))
+        res["stds"].append(np.std(results[f"{uncontrolled_algo}-vs-{uncontrolled_algo}"]["ys"]))
 
         # generate line plot where the x axis is k and the y axis is the mean return and std is the error bar
         plt.errorbar(res["xs"], res["ys"], 
@@ -381,7 +381,7 @@ def vis_nk_curve(log_path, algo:str, target_algs,
                      color=res["color"]
                      )
 
-    plt.xlabel("k Unseen Agents", fontsize=14)
+    plt.xlabel("k uncontrolled Agents", fontsize=14)
     plt.ylabel("Mean Test Return", fontsize=14)
     # modify xticks and yticks to have fontsize 14 
     plt.xticks(fontsize=12)

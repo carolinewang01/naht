@@ -513,19 +513,19 @@ def get_nk_summary(log_dir:str, eval_alg:str, target_algs:list, n_total:int):
             "color": color,
         }
 
-    # add performance with 0 unseen agents and all unseen agents
+    # add performance with 0 uncontrolled agents and all uncontrolled agents
     nk_summary = copy.deepcopy(nk_xp_summary)
     for label, res in nk_summary.items():
-        # compute performance with 0 unseen agents
+        # compute performance with 0 uncontrolled agents
         res["xs"].insert(0, 0)
         res["ys"].insert(0, np.mean(nk_sp_summary[f"{eval_alg}-vs-{eval_alg}"]["ys"]))
         res["cis"].insert(0, np.std(nk_sp_summary[f"{eval_alg}-vs-{eval_alg}"]["ys"]))
 
-        # compute performance with all unseen agents
-        unseen_algo = label.split("-vs-")[1]
+        # compute performance with all uncontrolled agents
+        uncontrolled_algo = label.split("-vs-")[1]
         res["xs"].append(n_total)
-        res["ys"].append(np.mean(nk_sp_summary[f"{unseen_algo}-vs-{unseen_algo}"]["ys"]))
-        res["cis"].append(np.std(nk_sp_summary[f"{unseen_algo}-vs-{unseen_algo}"]["ys"]))
+        res["ys"].append(np.mean(nk_sp_summary[f"{uncontrolled_algo}-vs-{uncontrolled_algo}"]["ys"]))
+        res["cis"].append(np.std(nk_sp_summary[f"{uncontrolled_algo}-vs-{uncontrolled_algo}"]["ys"]))
 
     return nk_summary
     
@@ -565,7 +565,7 @@ def vis_nk_curve_single(log_dir:str, ax:plt.Axes,
             nk_ret_ci = nk_ret_ci[::-1]
             xlabel = "N Controlled Agents"
         else: 
-            xlabel = "k Unseen Agents"
+            xlabel = "k uncontrolled Agents"
 
         # plot mean and CI for all values of N up but not including n_total
         ax.errorbar(xs[:-1], nk_ret_mean[:-1], 

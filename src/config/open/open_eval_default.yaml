@@ -40,7 +40,7 @@ test_verbose: True # Print out evaluation results
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: open # Evaluate model for test_nepisode episodes and quit (no training)
 local_results_path: stag-hunt-8p8s8h/open_eval # Relative path to save local results
-n_unseen: 1 # number of unseen agents to sample and add to trained agent team
+n_uncontrolled: 1 # number of uncontrolled agents to sample and add to trained agent team
 
 # --- agents to load ---
 trained_agents: 
@@ -49,7 +49,7 @@ trained_agents:
     agent_path: stag-hunt-8p8s8h/p=0/iql_ns/models/iql-ns_baseline_seed=112358_11-18-21-12-52
     load_step: best # Load model trained on this many timesteps (0 if choose max possible)
     n_agents_to_populate: 8 # must be less than n_agents
-unseen_agents:
+uncontrolled_agents:
   agent_0:
     agent_loader: rnn_eval_agent_loader
     agent_path: stag-hunt-8p8s8h/p=0/iql_ns/models/iql-ns_baseline_seed=112358_11-18-21-12-52

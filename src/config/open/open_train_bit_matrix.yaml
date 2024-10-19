@@ -49,12 +49,12 @@ eval_mode: null # Evaluate model for test_nepisode episodes and quit (no trainin
 local_results_path: matrix-games/bit-3p-jointactstate-v0/open_train/teammmate=r # Relative path to save local results
 
 # --- agents to load ---
-n_unseen: null # number of unseen agents to sample and add to trained agent team. null means to sample uniformly
+n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
     agent_loader: poam_train_agent_loader # rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-unseen_agents:
+uncontrolled_agents:
   # agent_static: # can name teams anything
   #   agent_loader: bot_agent_loader
   #   bot_name: bit-matrix-game:static

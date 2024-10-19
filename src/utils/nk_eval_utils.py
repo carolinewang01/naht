@@ -42,7 +42,7 @@ ENV_CONFIGS = {
             "env_config": "sc2",
             "env_args": {"map_name": "3s_vs_4z"}
         },
-        "3s5z": {
+        "3sv5z": {
             "full_name": "3s_vs_5z", 
             "env_config": "sc2",
             "env_args": {"map_name": "3s_vs_5z"}
@@ -302,7 +302,7 @@ def write_temp_config(env_nickname,
     # do not modify, for consistency across experiments
     conf['test_nepisode'] = 128 
     conf['eval_mode'] = "open"
-    conf['n_unseen'] = k
+    conf['n_uncontrolled'] = k
 
     conf['trained_agents'] = {
         'agent_0': {
@@ -312,7 +312,7 @@ def write_temp_config(env_nickname,
             'n_agents_to_populate': num_agents,
     }}
 
-    conf['unseen_agents'] = {
+    conf['uncontrolled_agents'] = {
         'agent_0': {
             'agent_loader': 'poam_eval_agent_loader' if algo_j_specific_args["agent"] == "rnn_poam" else "rnn_eval_agent_loader",
             'agent_path': algo_j_path,
