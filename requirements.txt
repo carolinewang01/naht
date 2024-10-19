@@ -1,5 +1,6 @@
 absl-py
 attrs
+dataframe_image
 gym==0.21.0
 idna==2.7
 imageio
@@ -17,6 +18,7 @@ py==1.6.0
 pygame
 pyparsing==2.2.2
 pysc2==3.0.0
+pytablewriter
 pytest==4.3.1
 python-dateutil==2.7.3
 PyYAML==5.3.1
@@ -25,6 +27,7 @@ rware
 s2clientprotocol==4.10.1.75800.0
 sacred
 scipy
+seaborn
 six==1.11.0
 sk-video==1.1.10
 snakeviz

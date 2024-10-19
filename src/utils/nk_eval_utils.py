@@ -37,57 +37,10 @@ ENV_CONFIGS = {
             "env_config": "sc2",
             "env_args": {"map_name": "10m_vs_11m"}
         },
-        "3s4z": {
-            "full_name": "3s_vs_4z", 
-            "env_config": "sc2",
-            "env_args": {"map_name": "3s_vs_4z"}
-        },
         "3sv5z": {
             "full_name": "3s_vs_5z", 
             "env_config": "sc2",
             "env_args": {"map_name": "3s_vs_5z"}
-        },
-        "6h8z": {
-            "full_name": "6h_vs_8z", 
-            "env_config": "sc2",
-            "env_args": {"map_name": "6h_vs_8z"}
-        },
-
-        "stag_hunt_0": {
-            "full_name": "stag_hunt", 
-            "env_config": "stag_hunt",
-            "env_args": {"miscapture_punishment": 0,
-                         "n_agents": 8,
-                         "n_stags": 8,
-                         "n_hare": 8 
-                        }
-        },
-        "stag_hunt_-1": {
-            "full_name": "stag_hunt", 
-            "env_config": "stag_hunt",
-            "env_args": {"miscapture_punishment": -1,
-                         "n_agents": 8,
-                         "n_stags": 8,
-                         "n_hare": 8 
-                        }
-        },
-        "stag_hunt_3p8s8h_stag-catching": {
-            "full_name": "stag_hunt", 
-            "env_config": "stag_hunt",
-            "env_args": {"miscapture_punishment": 0.,
-                         "reward_hare": 0., 
-                         "reward_stag": 1.,
-                         "n_agents": 3,
-                         "n_stags": 8,
-                         "n_hare": 8 
-                        }
-        },
-        "mpe-spread": {
-            "full_name": "mpe-spread",
-            "env_config": "gymma",
-            "env_args": {"key": "mpe:SimpleSpread-v0",
-                         "time_limit": 25, 
-            }
         },
         "mpe-pp": {
             "full_name": "mpe-pp",
@@ -295,9 +248,8 @@ def write_temp_config(env_nickname,
     conf = recursive_dict_update(primary=conf, secondary=algo_i_specific_args, precedence="secondary")
     conf['env'] = ENV_CONFIGS[env_nickname]["env_config"]
     conf['local_results_path'] = results_path
-    # conf['base_checkpoint_path'] = ""
     conf['test_verbose'] = False
-    conf['log_discounted_return'] = True if "stag_hunt" in conf['env'] else False
+    conf['log_discounted_return'] = False
 
     # do not modify, for consistency across experiments
     conf['test_nepisode'] = 128 
