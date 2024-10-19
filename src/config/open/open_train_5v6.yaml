@@ -1,0 +1,91 @@
+# --- Defaults ---
+
+# --- pymarl options ---
+runner: "parallel" # Runs 1 env for an episode
+mac: "open_train_mac" # Basic controller
+env: "sc2" # Environment name
+non_overridable: ['mac'] # is not overriden by any other config
+env_args: {} # Arguments for the environment
+batch_size_run: 8 # Number of environments to run in parallel
+test_nepisode: 128 # Number of episodes to test for
+test_interval: 50000 # Test after {} timesteps have passed
+test_greedy: True # Use greedy evaluation (if False, will set epsilon floor to 0
+
+log_interval: 50000 # Log summary of stats after every {} timesteps
+runner_log_interval: 50000 # Log runner stats (not test stats) every {} timesteps
+learner_log_interval: 50000 # Log training stats every {} timesteps
+t_max: 20000050 # Stop running after this many timesteps
+use_cuda: True # Use gpu by default unless it isn't available
+buffer_cpu_only: True # If true we won't keep all of the replay buffer in vram
+log_discounted_return: False # whether to log discounted return
+
+# ---  Logging/eval options ---
+use_tensorboard: True # Log results to tensorboard
+save_model: True # Save the models to disk
+save_model_interval: 2000000 # Save models after this many timesteps
+checkpoint_path: "" # Load a checkpoint from this path
+render: False # Render the environment when evaluating (only when evaluate == True)
+
+# --- Default learning hyperparameters: doesn't matter for eval only settings ---
+gamma: 0.99
+batch_size: 32 # Number of episodes to train on
+buffer_size: 32 # Size of the replay buffer
+lr: 0.0005 # Learning rate for agents
+optim_alpha: 0.99 # RMSProp alpha
+optim_eps: 0.00001 # RMSProp epsilon
+grad_norm_clip: 10 # Reduce magnitude of gradients above this L2 norm
+add_value_last_step: True
+
+# --- Default agent parameters ---
+agent: "rnn" # Default rnn agent
+use_rnn: True
+hidden_dim: 64 # Size of hidden state for default rnn agent
+obs_last_action: True # Include the agent's last action (one_hot) in the observation
+
+# --- Open train Parameters ---
+test_verbose: False # Print out evaluation results
+save_replay: False # Saving the replay of the model loaded from checkpoint_path
+eval_mode: null # Evaluate model for test_nepisode episodes and quit (no training)
+local_results_path: 5v6/open_train/poam-pqvmq_open # Relative path to save local results
+
+# --- agents to load ---
+n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
+trained_agents:
+  agent_0:
+    agent_loader: poam_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
+    agent_path: ""
+unseen_agents:
+  agent_ippo: # can name teams anything
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 5v6/ippo/models/ippo_baseline_seed=112358_01-05-12-55-42
+    load_step: best
+    n_agents_to_populate: 5
+    test_mode: True
+  agent_qmix:
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 5v6/qmix/models/qmix_baseline_seed=112358_11-14-12-00-04
+    load_step: best
+    n_agents_to_populate: 5
+    test_mode: True
+  agent_vdn:
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 5v6/vdn/models/vdn_baseline_seed=112358_11-14-11-53-52
+    load_step: best
+    n_agents_to_populate: 5
+    test_mode: True
+  agent_mappo:
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 5v6/mappo/models/mappo_baseline_seed=112358_01-05-12-53-36
+    load_step: best
+    n_agents_to_populate: 5
+    test_mode: True
+  agent_iql:
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 5v6/iql/models/iql_baseline_seed=112358_11-14-11-57-25
+    load_step: best
+    n_agents_to_populate: 5
+    test_mode: True
+# --- Experiment running params ---
+repeat_id: 1
+label: baseline
+hypergroup: null

@@ -52,66 +52,40 @@ local_results_path: 10v11/open_train/poam-pqvmq_open # Relative path to save loc
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: rnn_train_agent_loader # poam_train_agent_loader
+    agent_loader: poam_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-uncontrolled_agents:
-  agent_qmix1: # 112358, 1285842, 38410
+unseen_agents:
+  agent_ippo: # can name teams anything
+    agent_loader: rnn_eval_agent_loader
+    agent_path: 10v11/ippo/models/ippo_baseline_seed=112358_03-02-14-28-08
+    load_step: best
+    n_agents_to_populate: 9
+    test_mode: True
+  agent_qmix:
     agent_loader: rnn_eval_agent_loader
     agent_path: 10v11/qmix/models/qmix_baseline_seed=112358_02-29-22-59-38
     load_step: best
     n_agents_to_populate: 9
     test_mode: True
-  agent_qmix2:
+  agent_vdn:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/qmix/models/qmix_baseline_seed=1285842_02-29-22-59-38
+    agent_path: 10v11/vdn/models/vdn_baseline_seed=112358_02-29-23-00-14
     load_step: best
     n_agents_to_populate: 9
     test_mode: True
-  agent_qmix3:
-    agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/qmix/models/qmix_baseline_seed=38410_07-02-13-53-36
-    load_step: best
-    n_agents_to_populate: 9
-    test_mode: True
-
-  agent_mappo: # 112358, 1285842, 78590
+  agent_mappo:
     agent_loader: rnn_eval_agent_loader
     agent_path: 10v11/mappo/models/mappo_baseline_seed=112358_03-02-14-29-50
     load_step: best
     n_agents_to_populate: 9
     test_mode: True
-  agent_mappo2:
-    agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/mappo/models/mappo_baseline_seed=1285842_02-29-22-56-20
-    load_step: best
-    n_agents_to_populate: 9
-    test_mode: True
-  agent_mappo3:
-    agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/mappo/models/mappo_baseline_seed=78590_03-02-14-33-01
-    load_step: best
-    n_agents_to_populate: 9
-    test_mode: True
-
-  agent_iql1: # 112358, 1285842, 78590
+  agent_iql:
     agent_loader: rnn_eval_agent_loader
     agent_path: 10v11/iql/models/iql_baseline_seed=112358_02-29-22-59-09
     load_step: best
     n_agents_to_populate: 9
     test_mode: True
-  agent_iql2:
-    agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/iql/models/iql_baseline_seed=1285842_02-29-22-59-09
-    load_step: best
-    n_agents_to_populate: 9
-    test_mode: True
-  agent_iql3:
-    agent_loader: rnn_eval_agent_loader
-    agent_path: 10v11/iql/models/iql_baseline_seed=78590_02-29-22-59-09
-    load_step: best
-    n_agents_to_populate: 9
-    test_mode: True
-
+    
 # --- Experiment running params ---
 repeat_id: 1
 label: baseline

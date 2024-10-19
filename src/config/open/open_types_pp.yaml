@@ -3,7 +3,7 @@
 # --- pymarl options ---
 runner: "parallel" # Runs 1 env for an episode
 mac: "open_train_mac" # Basic controller
-env: "sc2" # Environment name
+env: "gymma" # Environment name
 non_overridable: ['mac'] # is not overriden by any other config
 env_args: {} # Arguments for the environment
 batch_size_run: 8 # Number of environments to run in parallel
@@ -14,7 +14,7 @@ test_greedy: True # Use greedy evaluation (if False, will set epsilon floor to 0
 log_interval: 50000 # Log summary of stats after every {} timesteps
 runner_log_interval: 50000 # Log runner stats (not test stats) every {} timesteps
 learner_log_interval: 50000 # Log training stats every {} timesteps
-t_max: 20000050 # Stop running after this many timesteps
+t_max: 20050000 # Stop running after this many timesteps
 use_cuda: True # Use gpu by default unless it isn't available
 buffer_cpu_only: True # If true we won't keep all of the replay buffer in vram
 log_discounted_return: False # whether to log discounted return
@@ -22,7 +22,7 @@ log_discounted_return: False # whether to log discounted return
 # ---  Logging/eval options ---
 use_tensorboard: True # Log results to tensorboard
 save_model: True # Save the models to disk
-save_model_interval: 2000000 # Save models after this many timesteps
+save_model_interval: 1000000 # Save models after this many timesteps
 checkpoint_path: "" # Load a checkpoint from this path
 render: False # Render the environment when evaluating (only when evaluate == True)
 
@@ -46,72 +46,68 @@ obs_last_action: True # Include the agent's last action (one_hot) in the observa
 test_verbose: False # Print out evaluation results
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: null # Evaluate model for test_nepisode episodes and quit (no training)
-local_results_path: 8v9/open_train/poam-pqvmq_open # Relative path to save local results
+local_results_path: mpe-pp/ts=100_shape=0.01/open_train/ippo-qmq_open # Relative path to save local results
 
-# --- agents to lofad ---
+# --- agents to load ---
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: rnn_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
+    agent_loader: rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
 uncontrolled_agents:
-  agent_qmix1: # 112358, 1285842, 38410
+  agent_qmix1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/qmix/models/qmix_baseline_seed=112358_02-28-14-26-55
+    agent_path: mpe-pp/ts=100_shape=0.01/qmix/models/qmix_baseline_seed=112358_04-24-12-09-32
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_qmix2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/qmix/models/qmix_baseline_seed=1285842_02-28-14-26-55
+    agent_path: qmix/models/qmix_baseline_seed=1285842_04-24-12-09-32
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_qmix3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/qmix/models/qmix_baseline_seed=38410_07-01-15-50-39
+    agent_path: qmix/models/qmix_baseline_seed=38410_07-01-14-56-40
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
-
-
-  agent_mappo1: # 112358, 1285842, 38410
+  agent_mappo1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/mappo/models/mappo_baseline_seed=112358_02-28-14-53-25
+    agent_path: mpe-pp/ts=100_shape=0.01/mappo/models/mappo_baseline_seed=112358_04-24-12-04-31
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_mappo2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/mappo/models/mappo_baseline_seed=1285842_02-28-14-53-25
+    agent_path: mappo/models/mappo_baseline_seed=1285842_04-24-12-04-31
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_mappo3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/mappo/models/mappo_baseline_seed=38410_07-01-15-51-42
+    agent_path: mappo/models/mappo_baseline_seed=38410_07-01-15-11-46
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
-
-
-  agent_iql1: # 112358, 1285842, 93718
+  agent_iql1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/iql/models/iql_baseline_seed=112358_02-28-14-33-19
+    agent_path: mpe-pp/ts=100_shape=0.01/iql/models/iql_baseline_seed=112358_04-24-12-11-40
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_iql2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/iql/models/iql_baseline_seed=1285842_02-28-14-33-19
+    agent_path: iql/models/iql_baseline_seed=1285842_04-24-12-11-40
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
   agent_iql3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: 8v9/iql/models/iql_baseline_seed=93718_07-01-15-49-58
+    agent_path: iql/models/iql_baseline_seed=38410_07-01-15-07-56
     load_step: best
-    n_agents_to_populate: 8
+    n_agents_to_populate: 3
     test_mode: True
 
 # --- Experiment running params ---
