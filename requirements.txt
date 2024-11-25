@@ -27,7 +27,6 @@ six
 sk-video
 snakeviz
 tensorboard-logger
-# torch==2.3.0
 tornado
 urllib3
 websocket-client

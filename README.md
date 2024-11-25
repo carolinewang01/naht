@@ -37,7 +37,7 @@ pip install -r env_requirement.txt
 ```
 The `env_requirements.txt` will install the following environments, used in our experiments: 
 - [SMAC](https://github.com/oxwhirl/smac)
-- Our fork of [MPE](ttps://github.com/carolinewang01/multiagent-particle-envs)
+- Our fork of [MPE](https://github.com/carolinewang01/multiagent-particle-envs)
 - Our fork of [Matrix Games](https://github.com/carolinewang01/matrix-games)
 
 2. Install the StarCraft2 
