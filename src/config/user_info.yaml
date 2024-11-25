@@ -1,0 +1,3 @@
+base_results_path: "./naht_results" # default location to save results
+base_uncntrl_path: "./uncntrl_agents" # default location from which uncontrolled agents will be referenced
+email: null # user email for condor notifications
