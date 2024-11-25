@@ -15,7 +15,7 @@ This codebase was built on top of the [EPyMARL](https://github.com/uoe-agents/ep
 
 The following additions and modifications were made by us: 
 - Custom implementation of IPPO, MAPPO, and POAM
-- Support for training / evaluation MARL/AHT algorithms in an open environment (i.e. with uncontrolled teammates). 
+- Support for training/evaluating MARL/AHT algorithms in an open environment (i.e. with uncontrolled teammates). 
 - Minor modifications to agent architectures to enable fair comparisons between the newly added methods and existing methods
 - Minor modifications to the orders in which config files are loaded (values in the alg configs override default values)
 

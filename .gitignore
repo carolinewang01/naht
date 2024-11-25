@@ -249,7 +249,7 @@ $RECYCLE.BIN/
 
 # Added for this repo
 src/config/temp*
-# src/config/user_info.yaml
+src/config/user_info.yaml
 
 # ignore vscode folder
 .vscode
