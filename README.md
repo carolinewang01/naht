@@ -11,6 +11,7 @@ This is the code release for the paper, ["N-Agent Ad Hoc Teamwork"](https://arxi
     year={2024}
 }
 ```
+This codebase was built on top of the [EPyMARL](https://github.com/uoe-agents/epymarl) codebase.
 
 The following additions and modifications were made by us: 
 - Custom implementation of IPPO, MAPPO, and POAM
@@ -19,14 +20,38 @@ The following additions and modifications were made by us:
 - Minor modifications to the orders in which config files are loaded (values in the alg configs override default values)
 
 # Getting Started 
+This section covers installation instructions, configuring repo-wide user variables, and downloading uncontrolled agent policies.
 
-1. Installation: This codebase was built on top of the [EPyMARL](https://github.com/uoe-agents/epymarl) codebase. 
-Please see that codebase for instructions to install this codebase, SMAC, and the MPE environment. 
+## Installation
+1. We recommend creating a conda environment. As of Nov. 2024, these installation instructions were verified with Python 3.12 and PyTorch 2.5. 
+We leave it to the user to install PyTorch using their preferred method, as 
+instructions may vary from device to device.
+```
+conda create -n <my_env> python=<desired-version>
+```
 
-2. Configuring results directories: modify `src/config/user_info.yaml` with your preferred base path for results, and preferred directory where uncontrolled agent policies will be stored. 
+2. Install environment and repository package requirements via 
+```
+pip install -r requirements.txt
+pip install -r env_requirement.txt
+```
+The `env_requirements.txt` will install the following environments, used in our experiments: 
+- [SMAC](https://github.com/oxwhirl/smac)
+- Our fork of [MPE](ttps://github.com/carolinewang01/multiagent-particle-envs)
+- Our fork of [Matrix Games](https://github.com/carolinewang01/matrix-games)
+
+2. Install the StarCraft2 
+Please see the instructions in the [SMAC](https://github.com/oxwhirl/smac) codebase for instructions to install the StarCraft II game. 
+
+
+## Configuring Results Directories
+
+Configuring results directories: modify `src/config/user_info.yaml` with your preferred base path for results, and preferred directory where uncontrolled agent policies will be stored. 
 By default, results will be written to the folder `./naht_results`, and uncontrolled agents should be stored at `./unctrl_agents`.
 
-3. To run the NAHT experiments, you will need uncontrolled agent policies. You can either generate them using this codebase (see Instructions to Run CMARL Experiments) or you can download the agents used in the paper from this Google Drive [link](https://drive.google.com/file/d/1lpYEgYdRaj7u1rWInCXe3HzpxwJpaYsq/view?usp=sharing).
+## Uncontrolled Agent Policies
+
+To run the NAHT experiments, you will need uncontrolled agent policies. You can either generate them using this codebase (see Instructions to Run CMARL Experiments) or you can download the agents used in the paper from this Google Drive [link](https://drive.google.com/file/d/1lpYEgYdRaj7u1rWInCXe3HzpxwJpaYsq/view?usp=sharing).
 
 
 # Instructions to Run CMARL Experiments
