@@ -1,6 +1,7 @@
 absl-py
 attrs
 dataframe_image
+einops
 idna
 imageio
 matplotlib
@@ -26,6 +27,7 @@ seaborn
 six
 sk-video
 snakeviz
+# torch-scatter # required, but will depend on your torch version 
 tensorboard-logger
 tornado
 urllib3

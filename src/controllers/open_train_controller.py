@@ -5,7 +5,6 @@ import random
 import numpy as np
 import torch as th
 
-
 class OpenTrainMAC:
     def __init__(self, scheme, groups, args):
         '''This class was based off the OpenEvalMAC'''
@@ -148,8 +147,8 @@ class OpenTrainMAC:
                                                                  model_path=agent_path)
         
         # initialize+load uncontrolled agents
-        base_path = self.args.base_results_path
-        uncontrolled_agents_dict = self.args.uncontrolled_agents
+        base_uncntrl_path = self.args.base_uncntrl_path
+        uncontrolled_agents_dict = self.args.uncntrl_agents
         self.uncontrolled_agent_teams = {}
 
         for agent_nm, agent_cfg in uncontrolled_agents_dict.items():
@@ -167,7 +166,7 @@ class OpenTrainMAC:
                             bot_name=agent_cfg["bot_name"],
                         )
                     else:
-                        model_path = os.path.join(base_path, agent_cfg["agent_path"])
+                        model_path = os.path.join(base_uncntrl_path, agent_cfg["agent_path"])
                         agent = agent_loader_REGISTRY[agent_cfg['agent_loader']](args=self.args, 
                                                                                 scheme=scheme, 
                                                                                 model_path=model_path, 

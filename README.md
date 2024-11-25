@@ -23,11 +23,12 @@ The following additions and modifications were made by us:
 This section covers installation instructions, configuring repo-wide user variables, and downloading uncontrolled agent policies.
 
 ## Installation
-1. We recommend creating a conda environment. As of Nov. 2024, these installation instructions were verified with Python 3.12 and PyTorch 2.5. 
-We leave it to the user to install PyTorch using their preferred method, as 
-instructions may vary from device to device.
+1. We recommend creating a conda environment. As of Nov. 2024, these installation instructions were verified with Python 3.12 and PyTorch 2.5. Note that `torch_scatter` is not required to reproduce the experiments in our paper, but is necessary to import the PAC method (inherited from ePyMARL).
+
 ```
-conda create -n <my_env> python=<desired-version>
+conda create -n <my_env> python=3.12
+conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install torch-scatter -f https://data.pyg.org/whl/torch-2.5.0+cu121.html
 ```
 
 2. Install environment and repository package requirements via 
@@ -40,9 +41,8 @@ The `env_requirements.txt` will install the following environments, used in our 
 - Our fork of [MPE](https://github.com/carolinewang01/multiagent-particle-envs)
 - Our fork of [Matrix Games](https://github.com/carolinewang01/matrix-games)
 
-2. Install the StarCraft2 
+2. Install StarCraft2 
 Please see the instructions in the [SMAC](https://github.com/oxwhirl/smac) codebase for instructions to install the StarCraft II game. 
-
 
 ## Configuring Results Directories
 

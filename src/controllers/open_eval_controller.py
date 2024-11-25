@@ -92,15 +92,15 @@ class OpenEvalMAC:
                 n_agents_to_populate: 2
                 load_step: 0
         '''
-        base_path = self.args.base_results_path
+        base_uncntrl_path = self.args.base_uncntrl_path
         trained_agents_dict = self.args.trained_agents
-        uncontrolled_agents_dict = self.args.uncontrolled_agents
+        uncontrolled_agents_dict = self.args.uncntrl_agents
 
         self.trained_agent_pool = []
         for _, agent_cfg in trained_agents_dict.items():
             # each agent_cfg can be used to load multiple agents                        
             for i in range(agent_cfg["n_agents_to_populate"]):
-                model_path = os.path.join(base_path, agent_cfg["agent_path"])
+                model_path = os.path.join(base_uncntrl_path, agent_cfg["agent_path"])
                 agent = agent_loader_REGISTRY[agent_cfg['agent_loader']](args=self.args, 
                                                                          scheme=scheme, 
                                                                          model_path=model_path, 
@@ -118,7 +118,7 @@ class OpenEvalMAC:
                             bot_name=agent_cfg["bot_name"],
                         )
                 else:                
-                    model_path = os.path.join(base_path, agent_cfg["agent_path"])
+                    model_path = os.path.join(base_uncntrl_path, agent_cfg["agent_path"])
                     agent = agent_loader_REGISTRY[agent_cfg['agent_loader']](args=self.args, 
                                                                             scheme=scheme, 
                                                                             model_path=model_path, 

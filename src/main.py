@@ -67,7 +67,7 @@ def recursive_dict_update(primary, secondary,
     '''
     assert precedence in ["primary", "secondary"]
     for k, v in secondary.items():
-        if isinstance(v, collections.Mapping):
+        if isinstance(v, collections.abc.Mapping):
             primary[k] = recursive_dict_update(primary.get(k, {}), v, precedence=precedence,
                                                non_overridable=non_overridable)
         else:
@@ -121,9 +121,11 @@ if __name__ == '__main__':
 
     # add base results path to local results path and checkpoint paths if necessary
     config_dict["base_results_path"] = user_info["base_results_path"]
+    config_dict["base_uncntrl_path"] = user_info["base_uncntrl_path"]
+
     config_dict["local_results_path"] = add_base_results_path(user_info["base_results_path"], config_dict["local_results_path"])
     ckpt_path = config_dict.get("checkpoint_path", "")
-    config_dict["checkpoint_path"] = add_base_results_path(user_info["base_results_path"], config_dict["checkpoint_path"]) if ckpt_path is not "" else ""
+    config_dict["checkpoint_path"] = add_base_results_path(user_info["base_results_path"], config_dict["checkpoint_path"]) if ckpt_path != "" else ""
 
     # add config to sacred
     ex.add_config(config_dict)

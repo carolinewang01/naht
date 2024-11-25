@@ -54,7 +54,7 @@ trained_agents:
   agent_0:
     agent_loader: poam_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
     agent_path: ""
-unseen_agents:
+uncntrl_agents:
   agent_ippo: # can name teams anything
     agent_loader: rnn_eval_agent_loader
     agent_path: 8v9/ippo/models/ippo_baseline_seed=112358_02-28-14-45-01
