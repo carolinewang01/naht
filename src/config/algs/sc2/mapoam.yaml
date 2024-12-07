@@ -38,7 +38,6 @@ embed_dim: 64
 ed_lr: 0.0005
 ed_bce_loss: False
 
-
 entropy_coef: 0.05
 standardise_rewards: True
 use_gae: True # if False, use n-step returns
