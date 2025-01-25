@@ -54,7 +54,7 @@ trained_agents:
   agent_0:
     agent_loader: rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-unctrl_agents: 
+uncntrl_agents: 
   agent_qmix1: # 112358, 1285842, 93718
     agent_loader: rnn_eval_agent_loader
     agent_path: 3sv5z/qmix/models/qmix_baseline_seed=112358_02-29-22-49-07

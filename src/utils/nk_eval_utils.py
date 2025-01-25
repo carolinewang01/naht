@@ -264,7 +264,7 @@ def write_temp_config(env_nickname,
             'n_agents_to_populate': num_agents,
     }}
 
-    conf['unctrl_agents'] = {
+    conf['uncntrl_agents'] = {
         'agent_0': {
             'agent_loader': 'poam_eval_agent_loader' if algo_j_specific_args["agent"] == "rnn_poam" else "rnn_eval_agent_loader",
             'agent_path': algo_j_path,

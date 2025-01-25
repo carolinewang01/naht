@@ -251,7 +251,7 @@ $RECYCLE.BIN/
 src/config/temp*
 src/config/user_info.yaml
 
-unctrl_agents/*
+uncntrl_agents/*
 naht_results/
 naht_results/*
 

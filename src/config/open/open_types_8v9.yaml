@@ -54,7 +54,7 @@ trained_agents:
   agent_0:
     agent_loader: rnn_train_agent_loader
     agent_path: ""
-unctrl_agents:
+uncntrl_agents:
   agent_qmix1: # 112358, 1285842, 38410
     agent_loader: rnn_eval_agent_loader
     agent_path: 8v9/qmix/models/qmix_baseline_seed=112358_02-28-14-26-55
