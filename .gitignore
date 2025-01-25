@@ -251,5 +251,9 @@ $RECYCLE.BIN/
 src/config/temp*
 src/config/user_info.yaml
 
+unctrl_agents/*
+naht_results/
+naht_results/*
+
 # ignore vscode folder
 .vscode
