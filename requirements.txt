@@ -27,6 +27,7 @@ seaborn
 six
 sk-video
 snakeviz
+tensorboard
 tensorboard-logger
 tornado
 urllib3

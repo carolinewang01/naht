@@ -71,6 +71,8 @@ class GymmaWrapper(MultiAgentEnv):
                  pretrained_wrapper=None, 
                  record_video=False, 
                  **kwargs):
+        if ":" in key:
+            env_pkg, key = key.split(":")
         self.original_env = gym.make(f"{key}", **kwargs)
         self.episode_limit = time_limit
         self._env = TimeLimit(self.original_env, max_episode_steps=time_limit)

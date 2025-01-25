@@ -2,7 +2,8 @@ from functools import partial
 import sys
 import os
 import numpy as np
-
+import mpe
+import matrixgames
 from smac.env import MultiAgentEnv, StarCraft2Env
 from .gymma import GymmaWrapper
 
