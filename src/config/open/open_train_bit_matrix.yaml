@@ -46,15 +46,15 @@ obs_last_action: True # Include the agent's last action (one_hot) in the observa
 test_verbose: False # Print out evaluation results
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: null # Evaluate model for test_nepisode episodes and quit (no training)
-local_results_path: matrix-games/bit-3p-jointactstate-v0/open_train/teammmate=r # Relative path to save local results
+local_results_path: matrix-games/bit-3p-jointactstate-v0/open_train/poam # Relative path to save local results
 
 # --- agents to load ---
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: poam_train_agent_loader # rnn_train_agent_loader # poam_train_agent_loader
+    agent_loader: rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-uncontrolled_agents:
+unctrl_agents:
   # agent_static: # can name teams anything
   #   agent_loader: bot_agent_loader
   #   bot_name: bit-matrix-game:static

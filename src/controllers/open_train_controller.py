@@ -132,7 +132,7 @@ class OpenTrainMAC:
             agent_0:
                 agent_loader: "rnn_train_agent_loader"
                 agent_path: "" # leave empty for training from scratch
-        uncontrolled_agents:
+        unctrl_agents:
             agent_0:
                 agent_loader: "rnn_eval_agent_loader"
                 agent_path: ""
@@ -148,10 +148,10 @@ class OpenTrainMAC:
         
         # initialize+load uncontrolled agents
         base_uncntrl_path = self.args.base_uncntrl_path
-        uncontrolled_agents_dict = self.args.uncntrl_agents
+        unctrl_agents_dict = self.args.uncntrl_agents
         self.uncontrolled_agent_teams = {}
 
-        for agent_nm, agent_cfg in uncontrolled_agents_dict.items():
+        for agent_nm, agent_cfg in unctrl_agents_dict.items():
             self.uncontrolled_agent_teams[agent_nm] = []
             use_param_sharing = False
 

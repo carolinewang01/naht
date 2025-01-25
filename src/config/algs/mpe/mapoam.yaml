@@ -66,3 +66,9 @@ trainable_agents_mask_critic: False # applies to open train only
 mask_type: "team" # choices: [team, agent] 
 # team: multiply default terminated and filled masks
 # ind: compute individual mask from available actions
+
+# --- Open train Parameters ---
+trained_agents:
+  agent_0:
+    agent_loader: poam_train_agent_loader
+    agent_path: ""

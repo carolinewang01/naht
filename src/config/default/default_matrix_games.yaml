@@ -27,7 +27,7 @@ load_step: 'best' # options [last, best, "digit"]
 
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 log_discounted_return: False # whether to log discounted return
-local_results_path: matrix-games/bit-3p-nostate-v0/ts=25_hyperparam/ippo # Path for local results
+local_results_path: matrix-games/bit-3p-nostate-v0/ts=25_hyperparam/mappo # Path for local results
 
 # --- RL hyperparameters ---
 gamma: 0.99

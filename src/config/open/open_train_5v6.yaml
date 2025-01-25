@@ -52,7 +52,7 @@ local_results_path: 5v6/open_train/poam-pqvmq_open # Relative path to save local
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: poam_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
+    agent_loader: rnn_train_agent_loader
     agent_path: ""
 uncntrl_agents:
   agent_ippo: # can name teams anything

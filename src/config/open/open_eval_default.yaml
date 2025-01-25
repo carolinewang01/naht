@@ -49,7 +49,7 @@ trained_agents:
     agent_path: stag-hunt-8p8s8h/p=0/iql_ns/models/iql-ns_baseline_seed=112358_11-18-21-12-52
     load_step: best # Load model trained on this many timesteps (0 if choose max possible)
     n_agents_to_populate: 8 # must be less than n_agents
-uncontrolled_agents:
+unctrl_agents:
   agent_0:
     agent_loader: rnn_eval_agent_loader
     agent_path: stag-hunt-8p8s8h/p=0/iql_ns/models/iql-ns_baseline_seed=112358_11-18-21-12-52

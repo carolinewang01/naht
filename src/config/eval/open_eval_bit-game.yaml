@@ -54,7 +54,7 @@ trained_agents:
     agent_path: "" # path to agent model to evaluate
     load_step: best # Load model trained on this many timesteps (0 if choose max possible)
     n_agents_to_populate: 3 # must be less than n_agents
-uncontrolled_agents:
+unctrl_agents:
   agent_random:
     agent_loader: bot_agent_loader
     bot_name: bit-matrix-game:random

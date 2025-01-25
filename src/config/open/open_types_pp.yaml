@@ -46,7 +46,7 @@ obs_last_action: True # Include the agent's last action (one_hot) in the observa
 test_verbose: False # Print out evaluation results
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 eval_mode: null # Evaluate model for test_nepisode episodes and quit (no training)
-local_results_path: mpe-pp/ts=100_shape=0.01/open_train/ippo-qmq_open # Relative path to save local results
+local_results_path: mpe-pp/open_train/poam-qmq_open # Relative path to save local results
 
 # --- agents to load ---
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
@@ -54,58 +54,58 @@ trained_agents:
   agent_0:
     agent_loader: rnn_train_agent_loader # poam_train_agent_loader
     agent_path: ""
-uncontrolled_agents:
+unctrl_agents:
   agent_qmix1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: mpe-pp/ts=100_shape=0.01/qmix/models/qmix_baseline_seed=112358_04-24-12-09-32
+    agent_path: mpe-pp/qmix/models/qmix_baseline_seed=112358_04-24-12-09-32
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_qmix2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: qmix/models/qmix_baseline_seed=1285842_04-24-12-09-32
+    agent_path: mpe-pp/qmix/models/qmix_baseline_seed=1285842_04-24-12-09-32
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_qmix3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: qmix/models/qmix_baseline_seed=38410_07-01-14-56-40
+    agent_path: mpe-pp/qmix/models/qmix_baseline_seed=38410_07-01-14-56-40
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_mappo1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: mpe-pp/ts=100_shape=0.01/mappo/models/mappo_baseline_seed=112358_04-24-12-04-31
+    agent_path: mpe-pp/mappo/models/mappo_baseline_seed=112358_04-24-12-04-31
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_mappo2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: mappo/models/mappo_baseline_seed=1285842_04-24-12-04-31
+    agent_path: mpe-pp/mappo/models/mappo_baseline_seed=1285842_04-24-12-04-31
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_mappo3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: mappo/models/mappo_baseline_seed=38410_07-01-15-11-46
+    agent_path: mpe-pp/mappo/models/mappo_baseline_seed=38410_07-01-15-11-46
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_iql1:
     agent_loader: rnn_eval_agent_loader
-    agent_path: mpe-pp/ts=100_shape=0.01/iql/models/iql_baseline_seed=112358_04-24-12-11-40
+    agent_path: mpe-pp/iql/models/iql_baseline_seed=112358_04-24-12-11-40
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_iql2:
     agent_loader: rnn_eval_agent_loader
-    agent_path: iql/models/iql_baseline_seed=1285842_04-24-12-11-40
+    agent_path: mpe-pp/iql/models/iql_baseline_seed=1285842_04-24-12-11-40
     load_step: best
     n_agents_to_populate: 3
     test_mode: True
   agent_iql3:
     agent_loader: rnn_eval_agent_loader
-    agent_path: iql/models/iql_baseline_seed=38410_07-01-15-07-56
+    agent_path: mpe-pp/iql/models/iql_baseline_seed=38410_07-01-15-07-56
     load_step: best
     n_agents_to_populate: 3
     test_mode: True

@@ -85,7 +85,7 @@ class OpenEvalMAC:
                 agent_path: ""
                 n_agents_to_populate: 2
                 load_step: 0
-        uncontrolled_agents:
+        unctrl_agents:
             agent_0:
                 agent_loader: "rnn_agent_loader"
                 agent_path: ""
@@ -94,7 +94,7 @@ class OpenEvalMAC:
         '''
         base_uncntrl_path = self.args.base_uncntrl_path
         trained_agents_dict = self.args.trained_agents
-        uncontrolled_agents_dict = self.args.uncntrl_agents
+        unctrl_agents_dict = self.args.uncntrl_agents
 
         self.trained_agent_pool = []
         for _, agent_cfg in trained_agents_dict.items():
@@ -110,7 +110,7 @@ class OpenEvalMAC:
                 self.trained_agent_pool.append(agent)
 
         self.uncontrolled_agent_pool = []
-        for _, agent_cfg in uncontrolled_agents_dict.items():
+        for _, agent_cfg in unctrl_agents_dict.items():
             for i in range(agent_cfg["n_agents_to_populate"]):
                 if agent_cfg["agent_loader"] == "bot_agent_loader":
                         agent = agent_loader_REGISTRY[agent_cfg['agent_loader']](

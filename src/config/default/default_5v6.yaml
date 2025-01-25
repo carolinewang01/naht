@@ -28,7 +28,7 @@ render: False # Render the environment when evaluating (only when evaluate == Tr
 load_step: best # last # Load model trained on this many timesteps (0 if choose max possible)
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 log_discounted_return: False # whether to log discounted return
-local_results_path: 5v6/ippo # Relative path for local results
+local_results_path: 5v6/mappo # Relative path for local results
 
 # --- RL hyperparameters ---
 gamma: 0.99 
@@ -49,5 +49,4 @@ obs_last_action: True # Include the agent's last action (one_hot) in the observa
 # --- Experiment running params ---
 repeat_id: 1
 label: baseline
-# ppo_epochs=5_clip=0.1_huber=False_clip-value=False_bs=256_threads=8
 hypergroup: null

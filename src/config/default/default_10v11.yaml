@@ -28,7 +28,7 @@ render: False # Render the environment when evaluating (only when evaluate == Tr
 load_step: best # last # Load model trained on this many timesteps (0 if choose max possible)
 save_replay: False # Saving the replay of the model loaded from checkpoint_path
 log_discounted_return: False # whether to log discounted return
-local_results_path: 10v11/qmix # Relative path for local results
+local_results_path: 10v11/mappo # Relative path for local results
 
 # --- RL hyperparameters ---
 gamma: 0.99 

@@ -52,9 +52,9 @@ local_results_path: 8v9/open_train/poam-qmq_open # Relative path to save local r
 n_uncontrolled: null # number of uncontrolled agents to sample and add to trained agent team. null means to sample uniformly
 trained_agents:
   agent_0:
-    agent_loader: poam_train_agent_loader # poam_train_agent_loader # rnn_train_agent_loader
+    agent_loader: rnn_train_agent_loader
     agent_path: ""
-uncontrolled_agents:
+unctrl_agents:
   agent_qmix1: # 112358, 1285842, 38410
     agent_loader: rnn_eval_agent_loader
     agent_path: 8v9/qmix/models/qmix_baseline_seed=112358_02-28-14-26-55
