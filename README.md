@@ -57,10 +57,16 @@ To run the NAHT experiments, you will need uncontrolled agent policies. You can 
 # Instructions to Run CMARL Experiments
 *TLDR*: 
 To train a MAPPO agent on the StarCraft `5v6` task, run: 
-```python src/main.py --env-config=sc2 --config=default/default_5v6 --alg-config=sc2/mappo with env_args.map_name=5m_vs_6m --seed=112358```
+
+```
+python src/main.py --env-config=sc2 --config=default/default_5v6 --alg-config=sc2/mappo with env_args.map_name=5m_vs_6m --seed=112358
+```
 
 To train a MAPPO agent on the MPE `predator-prey` task, run: 
-```python src/main.py --config=default/default_mpe_pp --alg-config=mpe/mappo --env-config=mpe with env_args.pretrained_wrapper="PretrainedTag" env_args.time_limit=100 env_args.key="mpe:PredatorPrey-v0" --seed=112358```
+
+```
+python src/main.py --config=default/default_mpe_pp --alg-config=mpe/mappo --env-config=mpe with env_args.pretrained_wrapper="PretrainedTag" env_args.time_limit=100 env_args.key="mpe:PredatorPrey-v0" --seed=112358
+```
 
 *Details*: 
 An example bash script showing how to train MARL agents on the `5v6` domain may be found in the top-level folder of this codebase, called `train_agent.sh`.
@@ -74,10 +80,16 @@ To run a particular algorithm on a particular task, the following changes to the
 
 *TLDR*: 
 To train POAM on the StarCraft `5v6` task, run the following commmand: 
-```python src/main.py --env-config=sc2 --config=open/open_train_5v6 --alg-config=sc2/poam with env_args.map_name=5m_vs_6m --seed=112358```
+
+```
+python src/main.py --env-config=sc2 --config=open/open_train_5v6 --alg-config=sc2/poam with env_args.map_name=5m_vs_6m --seed=112358
+```
 
 To train POAM on the MPE `predator-prey` task, run the following command: 
-```python src/main.py --config=open/open_train_pp --alg-config=mpe/poam --env-config=mpe with env_args.pretrained_wrapper="PretrainedTag" env_args.time_limit=100 env_args.key="mpe:PredatorPrey-v0" --seed=112358```
+
+```
+python src/main.py --config=open/open_train_pp --alg-config=mpe/poam --env-config=mpe with env_args.pretrained_wrapper="PretrainedTag" env_args.time_limit=100 env_args.key="mpe:PredatorPrey-v0" --seed=112358
+```
 
 *Details*:
 To run NAHT experiments, a set of teammates to train with must be provided. 
