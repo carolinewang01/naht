@@ -20,9 +20,13 @@ class ParallelRunner:
         self.parent_conns, self.worker_conns = zip(*[Pipe() for _ in range(self.batch_size_run)])
         env_fn = env_REGISTRY[self.args.env]
         env_args = [self.args.env_args.copy() for _ in range(self.batch_size_run)]
+        
+        # create sub seeds by sampling a random integer between 0 and 1000000
+        env_random_seeds = np.random.randint(0, 1000000, size=self.batch_size_run)
         for i in range(self.batch_size_run):
-            env_args[i]["seed"] *= i
-
+            # env_args[i]["seed"] *= i
+            env_args[i]["seed"] = env_random_seeds[i]
+            
         self.ps = [Process(target=env_worker, args=(worker_conn, CloudpickleWrapper(partial(env_fn, **env_arg))))
                             for env_arg, worker_conn in zip(env_args, self.worker_conns)]
 
