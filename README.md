@@ -11,6 +11,7 @@ This is the code release for the paper, ["N-Agent Ad Hoc Teamwork"](https://arxi
     year={2024}
 }
 ```
+The data used to generate the paper results are archived at `https://huggingface.co/datasets/carolinewang01/naht`.
 This codebase was built on top of the [EPyMARL](https://github.com/uoe-agents/epymarl) codebase.
 
 The following additions and modifications were made by us: 
@@ -51,7 +52,7 @@ By default, results will be written to the folder `./naht_results`, and uncontro
 
 ## Uncontrolled Agent Policies
 
-To run the NAHT experiments, you will need uncontrolled agent policies. You can either generate them using this codebase (see Instructions to Run CMARL Experiments) or you can download the agents used in the paper from this Google Drive [link](https://drive.google.com/file/d/1lpYEgYdRaj7u1rWInCXe3HzpxwJpaYsq/view?usp=sharing).
+To run the NAHT experiments, you will need uncontrolled agent policies. You can either generate them using this codebase (see Instructions to Run CMARL Experiments) or you can download the agents used in the paper [here](https://huggingface.co/datasets/carolinewang01/naht/blob/main/naht_unctrl_agents_10-18-24.zip).
 
 
 # Instructions to Run CMARL Experiments
@@ -125,4 +126,3 @@ The OOD evaluations may be run using the `target_set_eval()` function.
 
 # Visualization
  All code to generate plots in the paper may be found at `src/notebooks/paper_results.ipynb`.
- Please contact the authors to get access to the data used to generate the results. 
